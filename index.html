@@ -1,0 +1,46 @@
+---
+layout: default
+---
+<section id="header">
+  <div class="container">
+    <div class="col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <h1>Hi, I'm Zach.</h1>
+      <p>I'm a Data Engineer at Mastercard. I studied Quantitative Social Science and Computer Science at Dartmouth, where I ran when it was above 0 degrees.</p>
+    </div>
+  </div>
+</section>
+<section id="all-posts">
+  <div class="container">
+    <div class="row">
+      {% for post in site.posts %}
+        {% if post.tags[0] == 'Photo' %}
+        <div class="photo-post col-xs-12 col-sm-6">
+          <a href="{{ site.baseurl }}{{ post.url }}">
+            <div class="post-square col-xs-6 col-sm-3">
+              <img src="{{ site.baseurl }}/images/squares/{{ post.tags[1] }}">
+            </div>
+            <div class="post-title col-xs-6 col-sm-3">
+              <h2>{{ post.title }}</h2>
+              <p>{{ post.excerpt }}</p>
+            </div>
+          </a>
+        </div>
+        {% else %}
+        <div class="other-post col-xs-12 col-sm-6">
+          <a href="{{ site.baseurl }}{{ post.url }}">
+            <div class="post-square col-xs-6 col-sm-3">
+              <img src="{{ site.baseurl }}/images/squares/{{ post.tags[0] }}">
+            </div>
+            <div class="post-title col-xs-6 col-sm-3">
+              <h2>{{ post.title }}</h2>
+              <p>{{ post.excerpt }}</p>
+            </div>
+          </a>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include footer.html %}
