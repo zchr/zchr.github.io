@@ -10,7 +10,10 @@ layout: default
 <section>
   {% for post in site.posts %}
     <div class="container">
-      <a href="{{ site.baseurl }}{{ post.url }}" class="camo">
+      <a href="{{ site.baseurl }}{{ post.url }}" 
+        class="camo"
+        onmouseover="setBg('{{ post.color }}')"
+        onmouseout="unSetBg()">
         <h2>{{ post.title }}</h2>
         <p>{{ post.excerpt }}</p>
       </a>
@@ -19,3 +22,25 @@ layout: default
 </section>
 
 {% include footer.html %}
+
+<script>
+  const defaultBackgroundBody = '#fff';
+  const defaultBackgroundHeader = '#efefef';
+
+  function setBg(color) {
+    document
+      .querySelectorAll('body, header')
+      .forEach(elem => {
+        elem.style['background-color'] = color;
+      });
+  }
+
+  function unSetBg() {
+    document
+      .querySelector('body')
+      .style['background-color'] = defaultBackgroundBody;
+    document
+      .querySelector('header')
+      .style['background-color'] = defaultBackgroundHeader;
+  }
+</script>
